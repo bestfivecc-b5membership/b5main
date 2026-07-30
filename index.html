@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>B5 CUISINE CAFE | Japanese Soufflé & Fusion Dining</title>
+  
+  <!-- Editorial Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-warm: #FAF5F0;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --text-main: #2C221E;
+      --text-subtle: #6E6259;
+      --brand-orange: #D35435;
+      --brand-soft: #FBF0EC;
+      --brand-gold: #C08C4A;
+      --border-warm: rgba(211, 84, 53, 0.15);
+      --shadow-warm: 0 15px 35px rgba(80, 50, 30, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-warm);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Food Photo Background */
+    .global-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://app.b5membership.com/assets/images/b5pagebackground.png?v=1785325781043');
+      background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: -2;
+      filter: brightness(0.95) contrast(1.02);
+    }
+
+    .global-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(
+        to bottom,
+        rgba(35, 25, 20, 0.35) 0%,
+        rgba(250, 245, 240, 0.82) 35vh,
+        rgba(250, 245, 240, 0.98) 100%
+      );
+      z-index: -1;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 14px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(250, 245, 240, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-warm);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo-frame {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--brand-orange);
+      background: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+
+    .brand-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: 1px;
+    }
+
+    .header-pill {
+      font-size: 10.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--brand-orange);
+      border: 1px solid var(--border-warm);
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Hero Section */
+    .hero-container {
+      padding: 130px 8% 25px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      background: var(--brand-soft);
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(30px, 4.8vw, 54px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #1A1310;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      color: var(--brand-orange);
+    }
+
+    .hero-desc {
+      font-size: 14.5px;
+      color: var(--text-subtle);
+      max-width: 520px;
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    /* Interactive Member Benefit Chips (Desktop wrap, Mobile swipe) */
+    .category-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .chip {
+      white-space: nowrap;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-warm);
+      color: var(--text-main);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .chip:hover, .chip:active {
+      background: var(--brand-orange);
+      color: #FFFFFF;
+      border-color: var(--brand-orange);
+      transform: translateY(-1px);
+    }
+
+    /* Main Section */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 8% 60px;
+    }
+
+    /* Action Grid */
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 22px;
+      padding: 34px 28px;
+      box-shadow: var(--shadow-warm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card.highlight {
+      border: 2px solid var(--brand-orange);
+      background: #FFFFFF;
+    }
+
+    .card-badge {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--brand-orange);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .card-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-subtle);
+      margin-bottom: 20px;
+    }
+
+    .perks-list {
+      list-style: none;
+      margin-bottom: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .perks-list li {
+      font-size: 13px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .perks-list li::before {
+      content: "✦";
+      color: var(--brand-orange);
+      font-size: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 24px;
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-accent {
+      background-color: var(--brand-orange);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px rgba(211, 84, 53, 0.25);
+    }
+
+    .btn-dark {
+      background-color: #2C221E;
+      color: #FFFFFF;
+    }
+
+    /* House Favorites Menu Section */
+    .menu-section {
+      scroll-margin-top: 90px;
+      margin-bottom: 40px;
+    }
+
+    .menu-header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .menu-sub {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      font-weight: 700;
+    }
+
+    .menu-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-item {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 8px 24px rgba(80, 50, 30, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-item-tag {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .menu-item-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .menu-item-desc {
+      font-size: 13px;
+      color: var(--text-subtle);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .cn-highlight {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--brand-gold);
+      font-weight: 600;
+      background: rgba(192, 140, 74, 0.08);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    /* Compact Location & Connect Section */
+    .contact-section-compact {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 22px 24px;
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 8px 24px rgba(80, 50, 30, 0.04);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-title-sm {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 12.5px;
+      color: var(--text-subtle);
+    }
+
+    .contact-list a {
+      color: var(--brand-orange);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .action-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .map-btn {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 100px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-waze { background: #33CCFF; color: #000000; }
+    .btn-gmap { background: #4285F4; color: #FFFFFF; }
+    .btn-wa { background: #25D366; color: #FFFFFF; }
+
+    .social-compact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-left: 1px solid var(--border-warm);
+      padding-left: 20px;
+    }
+
+    .social-pills-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--bg-warm);
+      color: var(--text-main);
+      text-decoration: none;
+      border: 1px solid var(--border-warm);
+      transition: all 0.2s ease;
+    }
+
+    .social-pill:hover {
+      background: var(--brand-orange);
+      color: #FFFFFF;
+    }
+
+    /* Modal Overlay & Card Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transform: translateY(20px) scale(0.96);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: var(--bg-warm);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .modal-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .modal-body {
+      font-size: 13.5px;
+      color: var(--text-subtle);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .modal-body ul {
+      list-style: none;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-body li {
+      padding-left: 20px;
+      position: relative;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .modal-body li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--brand-orange);
+    }
+
+    .modal-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 20px;
+      border-radius: 100px;
+      background: var(--brand-orange);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(211, 84, 53, 0.25);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-warm);
+      padding: 24px 6%;
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--text-subtle);
+      background: rgba(250, 245, 240, 0.95);
+    }
+
+    @media (max-width: 768px) {
+      .global-bg {
+        height: 38vh;
+        min-height: 240px;
+        background-position: center top;
+        background-size: contain;
+      }
+
+      .global-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(35, 25, 20, 0.15) 0%,
+          rgba(250, 245, 240, 0.88) 32vh,
+          rgba(250, 245, 240, 0.98) 100%
+        );
+      }
+
+      header { padding: 12px 4%; }
+      .brand-logo-frame { width: 32px; height: 32px; }
+      .brand-title { font-size: 16px; }
+      .header-pill { display: none; }
+      
+      .hero-container {
+        padding-top: 32vh;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-title { font-size: 28px; }
+
+      .category-chips {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+      }
+      .category-chips::-webkit-scrollbar { display: none; }
+
+      main { padding: 0 16px 40px; }
+      .action-grid { grid-template-columns: 1fr; gap: 16px; }
+      .card { padding: 26px 20px; border-radius: 20px; }
+      .menu-grid { grid-template-columns: 1fr; }
+
+      .contact-section-compact {
+        grid-template-columns: 1fr;
+        padding: 18px 16px;
+        gap: 14px;
+      }
+
+      .social-compact {
+        border-left: none;
+        border-top: 1px solid var(--border-warm);
+        padding-left: 0;
+        padding-top: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Food Photo Background System -->
+  <div class="global-bg"></div>
+  <div class="global-overlay"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand-wrap">
+      <div class="brand-logo-frame">
+        <img src="https://app.b5membership.com/assets/logos/b5logo.jpg?v=1785328496019" alt="B5 CUISINE CAFE Logo">
+      </div>
+      <span class="brand-title">B5 CUISINE CAFE</span>
+    </a>
+    <div class="header-pill">Japanese Soufflé & Fusion</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-container">
+    <div class="hero-tag">Soft, Fluffy & Warm Moments</div>
+    <h1 class="hero-title">Fluffy Soufflés & <span>Fusion Dining.</span></h1>
+    <p class="hero-desc">
+      Indulge in artisanal coffee, cloud-like Japanese soufflé pancakes, refreshing snow ice, and delicious Asian-Western fusion dishes.
+    </p>
+
+    <!-- Interactive Member Benefit Chips -->
+    <div class="category-chips">
+      <button onclick="openModal('spin')" class="chip">🎰 Welcome Spin: Free Treats & Soufflé</button>
+      <button onclick="openModal('birthday')" class="chip">🎂 Birthday Perks & Latest Promos</button>
+      <button onclick="openModal('stamp')" class="chip">☕ Stamp Card: 3 & 7 Visit Milestones</button>
+      <button onclick="openModal('refer')" class="chip">👥 Refer Pals: Earn 50 Pts & Bonus Rewards</button>
+      <button onclick="openModal('redeem')" class="chip">💎 Redeem Points: No-Threshold Vouchers</button>
+    </div>
+  </section>
+
+  <!-- Main Section -->
+  <main>
+    <section class="action-grid">
+
+      <!-- Spin & Join Card -->
+      <div class="card highlight">
+        <div>
+          <span class="card-badge">✦ Welcome Member Offer</span>
+          <h2 class="card-title">Spin & Win Free Treats!</h2>
+          <p class="card-desc">Sign up in 30 seconds to spin the wheel for free Soufflés, coffee vouchers, and instant meal perks.</p>
+          
+          <ul class="perks-list">
+            <li>Free instant welcome reward</li>
+            <li>Spin & Win signature vouchers</li>
+            <li>Earn reward points on every order</li>
+          </ul>
+        </div>
+
+        <a href="https://members.b5membership.com/spin" target="_blank" rel="noopener" class="btn btn-accent">
+          <span>Join Now & Spin</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Member Portal Card -->
+      <div class="card">
+        <div>
+          <span class="card-badge" style="color: var(--brand-gold);">VIP Member Portal</span>
+          <h2 class="card-title">Member Dashboard</h2>
+          <p class="card-desc">Check your real-time points balance, view saved coupons, and claim exclusive birthday rewards.</p>
+
+          <ul class="perks-list" style="margin-bottom: 25px;">
+            <li>Points & tier status tracking</li>
+            <li>Birthday surprises & exclusive gifts</li>
+          </ul>
+        </div>
+
+        <a href="https://members.b5membership.com" target="_blank" rel="noopener" class="btn btn-dark">
+          <span>Member Login</span>
+          <span>→</span>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- House Favorites Menu Section -->
+    <section id="house-favorites" class="menu-section">
+      <div class="menu-header">
+        <span class="menu-sub">Crafted To Perfection</span>
+        <h3 class="menu-title">House Favorites</h3>
+      </div>
+
+      <div class="menu-grid">
+        
+        <!-- 1. Japanese Soufflé -->
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-tag">Japanese Soufflé</div>
+            <div class="menu-item-title">Classic Fluffy Soufflé</div>
+            <div class="menu-item-desc">Freshly baked cloud-like pancake served with pure butter & honey.</div>
+            <span class="cn-highlight">✦ 现点现做 • 入口即化云朵舒芙蕾</span>
+          </div>
+        </div>
+
+        <!-- 2. Snow Ice -->
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-tag">Signature Snow Ice</div>
+            <div class="menu-item-title">Bubur Cha Cha Snow Ice</div>
+            <div class="menu-item-desc">Exclusive local creation with taro, sweet potato & purple potato shaved ice.</div>
+            <span class="cn-highlight">✦ 独家创新 • 芋香紫薯地道雪花冰</span>
+          </div>
+        </div>
+
+        <!-- 3. Artisanal Coffee -->
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-tag">Artisanal Coffee</div>
+            <div class="menu-item-title">Specialty Espresso & Dirty</div>
+            <div class="menu-item-desc">Rich, balanced espresso blends crafted for genuine taste. Featuring Dirty & Molasses Coffee.</div>
+            <span class="cn-highlight">✦ 不做花巧 • 只做风味到位的真正好咖啡</span>
+          </div>
+        </div>
+
+        <!-- 4. Fusion Main Course -->
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-tag">Fusion Main Course</div>
+            <div class="menu-item-title">Heritage Noodles & Fusion Mains</div>
+            <div class="menu-item-desc">28-year heritage homemade noodles, Japanese Salmon pots, and Asian-style pastas & chops.</div>
+            <span class="cn-highlight">✦ 28年传承自制手工面 • 日西融合料理</span>
+          </div>
+        </div>
+
+        <!-- 5. Desserts & Cakes -->
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-tag">Desserts & Cakes</div>
+            <div class="menu-item-title">Handcrafted Cakes & Waffles</div>
+            <div class="menu-item-desc">Daily in-house baked Belgium waffles & cakes made with premium ingredients, reduced sweetness.</div>
+            <span class="cn-highlight">✦ 纯手工自制 • 严选上等食材 • 低糖无负担</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Compact Visit Us & Connect Section -->
+    <section class="contact-section-compact">
+      <!-- Address & Direct Action -->
+      <div>
+        <h4 class="contact-title-sm">📍 Visit Us</h4>
+        <ul class="contact-list">
+          <li style="font-weight:700; color:var(--text-main); font-size:13.5px;">B5 CUISINE CAFE</li>
+          <li>Lot 32602-A Jalan 1/45 A, Batu 5, Jln Ipoh, 51200 KL</li>
+          <li>⏰ 11:30 AM - 9:00 PM (Wed - Mon) | 🚫 Tuesday Off</li>
+          <li>📞 Tel: <a href="tel:0362415874">03-6241 5874</a></li>
+        </ul>
+
+        <div class="action-pills">
+          <a href="https://wa.me/60177583827" target="_blank" rel="noopener" class="map-btn btn-wa">💬 WhatsApp Us</a>
+          <a href="https://waze.com/ul/hw2861xj4u" target="_blank" rel="noopener" class="map-btn btn-waze">🚗 Waze</a>
+          <a href="https://maps.app.goo.gl/w5mj3ZfmLR6G2H7g6?g_st=aw" target="_blank" rel="noopener" class="map-btn btn-gmap">📍 Maps</a>
+        </div>
+      </div>
+
+      <!-- Social & Support Links -->
+      <div class="social-compact">
+        <h4 class="contact-title-sm">Connect With Us</h4>
+        <div class="social-pills-row">
+          <a href="mailto:support@b5membership.com" class="social-pill" style="background: rgba(211, 84, 53, 0.08); color: var(--brand-orange); border-color: rgba(211, 84, 53, 0.2); font-weight: 700;">✉️ Email Support</a>
+          <a href="https://instagram.com/b5cuisinecafe" target="_blank" rel="noopener" class="social-pill">📷 Instagram</a>
+          <a href="https://facebook.com/b5cuisinecafe" target="_blank" rel="noopener" class="social-pill">📘 Facebook</a>
+          <a href="https://share.google/01o0asYIakmavkIDK" target="_blank" rel="noopener" class="social-pill">⭐ Google Review</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Details Pop-up Modal Container -->
+  <div id="modal-overlay" class="modal-overlay" onclick="closeModalOnBg(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 B5 CUISINE CAFE. All rights reserved.</p>
+    <p style="margin-top: 4px; opacity: 0.7;">Japanese Soufflé • Coffee • Fusion Food • Desserts • Snow Ice</p>
+  </footer>
+
+  <!-- Modal Script (Bilingual & Precise Points Rule) -->
+  <script>
+    const modalData = {
+      spin: {
+        icon: "🎰",
+        title: "Welcome Spin & Win | 幸运轮盘抽奖",
+        body: "注册成为 B5 官方会员，即可获得 1 次 100% 中奖的幸运轮盘抽奖机会！<br><em>Register as a B5 official member to get 1 free spin on our 100% winning fortune wheel!</em>",
+        perks: [
+          "有机会抽中免费招牌舒芙蕾兑换券<br><small style='color:#888;'>Chance to win a Free Signature Soufflé Voucher</small>",
+          "精选饮品、咖啡与精美餐点兑换券<br><small style='color:#888;'>Specialty Coffee, Drinks & Food Vouchers</small>"
+        ],
+        btnText: "免费注册并开奖 | Spin Now →",
+        link: "https://members.b5membership.com/spin"
+      },
+      birthday: {
+        icon: "🎂",
+        title: "Birthday Perks & Promos | 生日礼遇",
+        body: "在您的生日月份，B5 Cuisine Cafe 将为您献上专属的生日礼遇与限定惊喜！<br><em>Celebrate your special month with exclusive birthday rewards and surprises at B5!</em>",
+        perks: [
+          "当月专属生日特别礼物或专享折扣<br><small style='color:#888;'>Exclusive birthday gift or special discount during your birthday month</small>",
+          "优先收到本店最新推出的季节限定餐点通知<br><small style='color:#888;'>Priority updates on our latest seasonal menu items</small>",
+          "独家快闪促销 (Pop-up Promos) 优先参与权<br><small style='color:#888;'>Exclusive early access to pop-up promotions</small>"
+        ],
+        btnText: "登录查看生日优惠 | Member Login →",
+        link: "https://members.b5membership.com"
+      },
+      stamp: {
+        icon: "☕",
+        title: "Stamp Card Milestones | 到店盖章卡",
+        body: "单笔消费满 RM27 即可获得 1 个印章，轻松达成里程碑解锁免费好礼！<br><em>Collect 1 stamp with every RM27 spent per transaction to unlock milestone rewards!</em>",
+        perks: [
+          "第 3 次到店 (Visit 3)：解锁精选饮品 / 甜点里程碑奖励<br><small style='color:#888;'>Unlock selected drinks or dessert milestone rewards</small>",
+          "第 7 次到店 (Visit 7)：解锁免费招牌主食或大额抵用券<br><small style='color:#888;'>Unlock free signature mains or high-value vouchers</small>",
+          "每月自动重置更新，多到多得！<br><small style='color:#888;'>Stamps reset monthly—the more you visit, the more you earn!</small>"
+        ],
+        btnText: "查看我的盖章卡 | View Stamp Card →",
+        link: "https://members.b5membership.com"
+      },
+      refer: {
+        icon: "👥",
+        title: "Refer Pals & VIP Tiers | 推荐好友与尊贵会员",
+        body: "推荐好友加入 B5 会员且好友消费满 RM50，双方均可获得 50 Pts！推荐越多，等级越高！<br><em>Refer friends to B5 membership. When they spend RM50, both get 50 Pts! Unlock higher VIP tiers as you refer more.</em>",
+        perks: [
+          "成功推荐 3、6、9 位好友：解锁额外加码 Reward 礼包<br><small style='color:#888;'>Refer 3, 6, or 9 friends to unlock extra bonus reward bundles</small>",
+          "推荐达 10, 20, 35, 50 人：晋升为 Bronze, Silver, Gold 及 Platinum VIP<br><small style='color:#888;'>Reach 10, 20, 35, or 50 referrals to rank up to Bronze, Silver, Gold & Platinum VIP</small>",
+          "尊享高达 20% OFF 的全单专享折扣<br><small style='color:#888;'>Enjoy up to 20% OFF exclusive member discounts</small>",
+          "尊贵会员每月可额外获得 1 次专属免费兑换额度<br><small style='color:#888;'>VIP members get 1 extra free redemption allowance every month</small>"
+        ],
+        btnText: "获取我的推荐链接 | Get Referral Link →",
+        link: "https://members.b5membership.com"
+      },
+      redeem: {
+        icon: "💎",
+        title: "No-Threshold Vouchers | 零门槛积分兑换",
+        body: "日常消费每一令吉 (RM1) 均可转化为会员积分 (Pts)！<br><strong>⚠️ 注意：</strong>积分自注册日起有效期为 1 年，期满后将于次年同日自动归零（每年循环重置）。<br><em>Earn 1 Point for every RM1 spent! Points are valid for 1 year from your join date and will reset annually on your anniversary date.</em>",
+        perks: [
+          "零门槛兑换：积分可直接兑换任意美食与饮品<br><small style='color:#888;'>No-threshold redemption: Redeem points directly for food and drinks</small>",
+          "无最低消费限制，兑换透明快捷<br><small style='color:#888;'>No minimum spend required—fast, transparent, and hassle-free</small>",
+          "随时在会员后台一键查看实时 Points 余额<br><small style='color:#888;'>Check your real-time points balance anytime in the member portal</small>"
+        ],
+        btnText: "查看可兑换餐点 | Redeem Rewards →",
+        link: "https://members.b5membership.com"
+      }
+    };
+
+    function openModal(type) {
+      const data = modalData[type];
+      if (!data) return;
+
+      const perksHtml = data.perks.map(p => `<li style="margin-bottom:6px;">${p}</li>`).join('');
+      
+      document.getElementById('modal-content').innerHTML = `
+        <div class="modal-icon">${data.icon}</div>
+        <h3 class="modal-title" style="line-height:1.3;">${data.title}</h3>
+        <div class="modal-body">
+          <p style="margin-bottom:12px;">${data.body}</p>
+          <ul>${perksHtml}</ul>
+        </div>
+        <a href="${data.link}" target="_blank" rel="noopener" class="modal-btn">${data.btnText}</a>
+      `;
+
+      document.getElementById('modal-overlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('active');
+    }
+
+    function closeModalOnBg(e) {
+      if (e.target.id === 'modal-overlay') {
+        closeModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
